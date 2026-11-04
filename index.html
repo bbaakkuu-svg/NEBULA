@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Portfolio de Nébula, artista digital especializada en paisajes de ciencia ficción.">
+    <title>Nébula – Artista Digital</title>
+    <link rel="stylesheet" href="css/dark.css">
+</head>
+
+<body>
+
+    <!-- =====================================================
+         CABECERA
+         ===================================================== -->
+    <header class="site-header">
+        <div class="logo-container">
+            <img src="assets/img/logo.webp" alt="Logotipo de Nébula: planeta con anillo neón" class="logo" width="64"
+                height="64" loading="eager">
+            <span class="logo-text">NEBULA</span>
+        </div>
+
+        <nav aria-label="Menú principal">
+            <ul>
+                <li><a href="#gallery">Galería</a></li>
+                <li><a href="#video">Presentación</a></li>
+                <li><a href="#audio">Audio</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- =====================================================
+         HERO — fuera de <main> porque es portada
+         ===================================================== -->
+    <section class="hero" aria-label="Portada">
+        <figure>
+            <img src="assets/img/hero.webp" alt="Paisaje espacial futurista: lago reflejando un cielo estrellado"
+                width="1920" height="1080" loading="eager">
+            <figcaption>
+                Crédito: <a href="https://pixabay.com/users/evgenit-4930349/" target="_blank"
+                    rel="noopener noreferrer">Evgeni T</a>
+                vía Pixabay — Licencia <a href="https://pixabay.com/service/license/" target="_blank"
+                    rel="noopener noreferrer">Pixabay Content License</a>
+            </figcaption>
+        </figure>
+        <h1>Bienvenido al Universo de Nébula</h1>
+        <button class="cta-button" type="button"
+            onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">
+            <img src="assets/img/cta-animation.webp" alt="Icono animado de contacto con efecto neón" width="28"
+                height="28" loading="lazy">
+            <span>Contacto</span>
+        </button>
+    </section>
+
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+         ===================================================== -->
+    <main>
+
+        <!-- GALERÍA -->
+        <section id="gallery" class="gallery" aria-labelledby="gallery-title">
+            <h2 id="gallery-title">Galería</h2>
+            <div class="thumbnails">
+
+                <figure>
+                    <img src="assets/img/thumb1.webp" alt="Composición espacial: satélites en órbita con fondo nebuloso"
+                        width="400" height="250" loading="lazy">
+                    <figcaption>
+                        Crédito: <a href="https://pixabay.com/users/geralt-9301/" target="_blank"
+                            rel="noopener noreferrer">Geralt</a>
+                        vía Pixabay — Licencia Pixabay Content License
+                    </figcaption>
+                </figure>
+
+                <figure>
+                    <img src="assets/img/thumb2.webp" alt="OVNI futurista sobrevolando un paisaje nocturno" width="400"
+                        height="250" loading="lazy">
+                    <figcaption>
+                        Crédito: <a href="https://pixabay.com/users/mastertux-470906/" target="_blank"
+                            rel="noopener noreferrer">MasterTux</a>
+                        vía Pixabay — Licencia Pixabay Content License
+                    </figcaption>
+                </figure>
+
+                <figure>
+                    <img src="assets/img/thumb3.webp" alt="Nave espacial cruzando una nebulosa de colores vivos"
+                        width="400" height="250" loading="lazy">
+                    <figcaption>
+                        Crédito: <a href="https://pixabay.com/users/stevebidmead-249449/" target="_blank"
+                            rel="noopener noreferrer">SteveBidmead</a>
+                        vía Pixabay — Licencia Pixabay Content License
+                    </figcaption>
+                </figure>
+
+            </div>
+        </section>
+
+        <!-- VÍDEO DE PRESENTACIÓN -->
+        <section id="video" class="presentation-video" aria-labelledby="video-title">
+            <h2 id="video-title">Presentación</h2>
+            <figure>
+                <video controls poster="assets/img/poster.webp" width="720" height="405"
+                    aria-label="Vídeo de presentación de Nébula: animación espacial">
+                    <source src="assets/video/presentacion.webm" type="video/webm">
+                    <source src="assets/video/presentacion2.mp4" type="video/mp4">
+                    Tu navegador no soporta la reproducción de vídeo HTML5.
+                </video>
+                <figcaption>
+                    Crédito: Pixabay — Licencia <a href="https://pixabay.com/service/license/" target="_blank"
+                        rel="noopener noreferrer">Pixabay Content License</a>
+                </figcaption>
+            </figure>
+        </section>
+
+        <!-- AUDIO AMBIENTAL -->
+        <section id="audio" class="ambient-audio" aria-labelledby="audio-title">
+            <h2 id="audio-title">Ambiente Sonoro</h2>
+            <audio controls aria-label="Clip de audio ambiental de ciencia ficción">
+                <source src="assets/audio/ambient.ogg" type="audio/ogg">
+                <source src="assets/audio/ambient.mp3" type="audio/mpeg">
+                Tu navegador no soporta la reproducción de audio HTML5.
+            </audio>
+        </section>
+
+        <!-- CONTACTO (placeholder) -->
+        <section id="contact" aria-labelledby="contact-title">
+            <h2 id="contact-title">Contacto</h2>
+            <p>Para colaboraciones o consultas escríbeme a <a href="mailto:nebula@gmail.com">nebula@gmail.com</a>
+            </p>
+        </section>
+
+    </main>
+
+    <!-- =====================================================
+         PIE DE PÁGINA
+         ===================================================== -->
+    <footer class="site-footer">
+        <p>&copy; 2026 Nébula. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+
+</html>
