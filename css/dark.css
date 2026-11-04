@@ -1,0 +1,231 @@
+/* ============================================================
+   TEMA OSCURO — LANDING PAGE "NÉBULA" (1º DAW)
+   ============================================================ */
+
+/* 1. Variables de color globales */
+:root {
+    --color-fondo:     #0a0d1a;   /* Azul oscuro espacial */
+    --color-principal: #00f2fe;   /* Cian de acento */
+    --color-texto:     #f1f5f9;   /* Blanco roto para lectura */
+    --color-muted:     #94a3b8;   /* Gris claro para subtítulos y créditos */
+    --color-borde:     #374151;   /* Borde tenue de tarjetas y cajas */
+}
+
+/* 2. Reset básico y caja de modelo */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+}
+
+a {
+    color: var(--color-principal);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img, video {
+    max-width: 100%;
+    display: block;
+}
+
+/* 3. Cabecera y Navegación (Flexbox) */
+.site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 2rem;
+    background-color: rgba(10, 13, 26, 0.95);
+    border-bottom: 1px solid var(--color-borde);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.logo {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    mix-blend-mode: lighten;   /* Funde el fondo oscuro del logo con la cabecera */
+}
+
+.logo-text {
+    font-family: Arial Black, Arial, sans-serif;
+    font-weight: 900;
+    font-size: 2.2rem;
+    letter-spacing: 0.05em;
+    background: linear-gradient(90deg, #67e8f9, #a78bfa, #e9a8d0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+nav a {
+    color: var(--color-muted);
+    font-size: 1rem;
+    transition: color 0.2s;
+}
+
+nav a:hover {
+    color: var(--color-principal);
+    text-decoration: none;
+}
+
+/* 4. Portada (Hero) */
+.hero {
+    position: relative;
+    text-align: center;
+}
+
+.hero img {
+    width: 100%;
+    max-height: 550px;
+    object-fit: cover;
+}
+
+.hero figcaption {
+    font-size: 0.75rem;
+    color: var(--color-muted);
+    padding: 0.3rem 0.6rem;
+    background: rgba(0, 0, 0, 0.6);
+    display: inline-block;
+}
+
+.hero h1 {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    font-size: clamp(1.5rem, 3.5vw, 2.8rem);
+    text-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+    width: 90%;
+}
+
+/* Botón de Llamada a la Acción (CTA) */
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: 2px solid var(--color-principal);
+    color: var(--color-principal);
+    padding: 0.6rem 1.4rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 1.2rem;
+    transition: background 0.2s, color 0.2s;
+}
+
+.cta-button:hover {
+    background: var(--color-principal);
+    color: var(--color-fondo);
+}
+
+.cta-button img {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+}
+
+/* 5. Secciones Generales */
+main section {
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+}
+
+main h2 {
+    color: var(--color-principal);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+/* 6. Galería de Trabajos (Flexbox) */
+.gallery .thumbnails {
+    display: flex;
+    gap: 1.2rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.gallery img {
+    width: 400px;
+    height: 250px;
+    object-fit: cover;
+    border: 1px solid var(--color-borde);
+    border-radius: 0.5rem;
+    transition: transform 0.2s, border-color 0.2s;
+}
+
+.gallery img:hover {
+    transform: scale(1.03);
+    border-color: var(--color-principal);
+}
+
+.gallery figcaption {
+    font-size: 0.75rem;
+    color: var(--color-muted);
+    margin-top: 0.4rem;
+}
+
+/* 7. Vídeo y Audio Multimedia */
+.presentation-video video {
+    max-width: 720px;
+    width: 100%;
+    border: 1px solid var(--color-borde);
+    border-radius: 0.5rem;
+    margin: 0 auto;
+}
+
+.presentation-video figcaption {
+    font-size: 0.75rem;
+    color: var(--color-muted);
+    margin-top: 0.5rem;
+}
+
+.ambient-audio audio {
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    display: block;
+}
+
+/* 8. Contacto y Pie de Página */
+#contact p {
+    color: var(--color-muted);
+    font-size: 1.05rem;
+}
+
+.site-footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.85rem;
+    color: var(--color-muted);
+    border-top: 1px solid var(--color-borde);
+    background-color: #070a14;
+}
