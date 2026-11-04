@@ -43,16 +43,24 @@ Página de presentación para la artista digital ficticia **Nébula**, especiali
 
 ## Herramientas Utilizadas
 
-1. **FFmpeg 9.0.2:**
-   - Redimensionado y compresión de la imagen principal `hero.webp` a 1920×1080 px manteniendo aspect ratio y con peso final de 150 KB (< 250 KB).
-   - Generación de miniaturas de galería de 400×250 px (`thumb1.webp`, `thumb2.webp`, `thumb3.webp`) con pesos inferiores a 20 KB.
-   - Transcodificación del vídeo a WebM (VP9, ~1.4 MB) y extracción del fotograma clave para `poster.webp` (46 KB).
-   - Recorte de audio ambiental a 15.00 segundos exactos aplicando filtros de fundido de entrada y salida (`afade=t=in:ss=0:d=2,afade=t=out:st=13:d=2`) y codificación a Opus 128 kbps.
+1. **Affinity Photo 2:**
+   - Redimensionado, reencuadre y compresión de la imagen principal `hero.webp` a 1920×1080 px manteniendo el aspect ratio y fijando el peso final en 150 KB (< 250 KB).
+   - Composición y generación de las miniaturas de galería de 400×250 px (`thumb1.webp`, `thumb2.webp`, `thumb3.webp`) con pesos inferiores a 20 KB.
+   - Retoque y exportación del fotograma clave para la miniatura de precarga de vídeo `poster.webp` (46 KB).
+   - Tratamiento de canal alfa, resolución y exportación optimizada de los recursos gráficos del proyecto.
 
-2. **Python 3.14 + Pillow:**
+2. **HandBrake:**
+   - Transcodificación y compresión del vídeo de presentación a contenedor WebM con códec VP9 (~1.4 MB, muy por debajo del límite de 3 MB) y exportación del recurso alternativo en MP4 (H.264).
+
+3. **Audacity:**
+   - Recorte del clip de audio ambiental a 15.00 segundos exactos.
+   - Aplicación de filtros de envolvente para fundido de entrada (*fade-in*, 2 s) y fundido de salida (*fade-out*, 2 s).
+   - Exportación de las pistas a formato Ogg Opus (128 kbps) y MP3 (192 kbps).
+
+4. **Python 3.14 + Pillow:**
    - Creación fotograma a fotograma (4 frames) del sobre con efecto de iluminación neón en cian y violeta, y ensamblado en bucle continuo de `cta-animation.webp` (7.1 KB).
 
-3. **Editor de código (VS Code):**
+5. **Editor de código (VS Code):**
    - Maquetación y estructura semántica HTML5 (`<header>`, `<main>`, `<section>`, `<figure>`, `<figcaption>`, `<footer>`).
    - Hoja de estilos `dark.css` con variables CSS (`:root`), diseño adaptable y paleta cian (`#00f2fe`).
 
