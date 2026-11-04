@@ -1,0 +1,10 @@
+# Archivos del sistema y editores
+.DS_Store
+Thumbs.db
+*~lock~
+*.tmp
+.vscode/
+.idea/
+
+# Entorno de trabajo local
+WorkFlow/
