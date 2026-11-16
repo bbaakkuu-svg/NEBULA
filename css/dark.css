@@ -1,21 +1,29 @@
 /* ============================================================
-   TEMA OSCURO — LANDING PAGE "NÉBULA" (1º DAW)
+   TEMA OSCURO — LANDING PAGE "NÉBULA" (1º DAW - UT4)
    ============================================================ */
 
-/* 1. Variables de color globales */
+/* 1. Variables globales y del tema */
 :root {
     --color-fondo:     #0a0d1a;   /* Azul oscuro espacial */
     --color-principal: #00f2fe;   /* Cian de acento */
-    --color-texto:     #f1f5f9;   /* Blanco roto para lectura */
-    --color-muted:     #94a3b8;   /* Gris claro para subtítulos y créditos */
-    --color-borde:     #374151;   /* Borde tenue de tarjetas y cajas */
+    --color-texto:     #f1f5f9;   /* Blanco para lectura */
+    --color-muted:     #94a3b8;   /* Gris para textos secundarios */
+    --color-borde:     #374151;   /* Borde tenue de tarjetas */
+
+    /* Variables del Logo SVG (Páginas 7 y 15 del PDF) */
+    --logo-planeta:    #7c3aed;   /* Violeta para el planeta */
+    --logo-anillo:     #00f2fe;   /* Cian neón para el anillo */
 }
 
-/* 2. Reset básico y caja de modelo */
+/* 2. Reset básico */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -40,7 +48,7 @@ img, video {
     display: block;
 }
 
-/* 3. Cabecera y Navegación (Flexbox) */
+/* 3. Cabecera y Logotipo SVG Inline */
 .site-header {
     display: flex;
     justify-content: space-between;
@@ -56,14 +64,45 @@ img, video {
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 0.6rem;
 }
 
-.logo {
-    width: 60px;
-    height: 60px;
-    object-fit: contain;
-    mix-blend-mode: lighten;   /* Funde el fondo oscuro del logo con la cabecera */
+.logo-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    text-decoration: none;
+    outline: none;
+}
+
+.logo-svg {
+    width: 50px;
+    height: 50px;
+    display: block;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+/* Propiedades visuales SVG: fill y stroke (Páginas 14 y 15 del PDF) */
+.logo-planeta {
+    fill: var(--logo-planeta);
+    transition: fill 0.3s ease;
+}
+
+.logo-anillo {
+    stroke: var(--logo-anillo);
+    transition: stroke 0.3s ease;
+}
+
+/* Interacción :hover y :focus-visible en el logo */
+.logo-link:hover,
+.logo-link:focus-visible {
+    --logo-planeta: #ec4899;   /* Planeta rosa */
+    --logo-anillo:  #ffffff;   /* Anillo blanco brillante */
+}
+
+.logo-link:hover .logo-svg,
+.logo-link:focus-visible .logo-svg {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 8px var(--color-principal));
 }
 
 .logo-text {
@@ -85,7 +124,6 @@ nav ul {
 
 nav a {
     color: var(--color-muted);
-    font-size: 1rem;
     transition: color 0.2s;
 }
 
@@ -94,7 +132,7 @@ nav a:hover {
     text-decoration: none;
 }
 
-/* 4. Portada (Hero) */
+/* 4. Portada (Hero) y Botón CTA */
 .hero {
     position: relative;
     text-align: center;
@@ -125,32 +163,44 @@ nav a:hover {
     width: 90%;
 }
 
-/* Botón de Llamada a la Acción (CTA) */
 .cta-button {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    background: none;
     border: 2px solid var(--color-principal);
     color: var(--color-principal);
     padding: 0.6rem 1.4rem;
     border-radius: 2rem;
-    cursor: pointer;
     font-size: 1rem;
     font-weight: bold;
     margin-top: 1.2rem;
-    transition: background 0.2s, color 0.2s;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
-.cta-button:hover {
+.cta-button:hover,
+.cta-button:focus-visible {
     background: var(--color-principal);
     color: var(--color-fondo);
+    text-decoration: none;
+    outline: none;
+    box-shadow: 0 0 15px rgba(0, 242, 254, 0.5);
 }
 
-.cta-button img {
-    width: 26px;
-    height: 26px;
-    object-fit: contain;
+.cta-icon {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease;
+}
+
+.cta-icon-envelope {
+    stroke: currentColor;
+    transition: stroke 0.2s ease;
+}
+
+.cta-button:hover .cta-icon,
+.cta-button:focus-visible .cta-icon {
+    transform: translateY(-2px) scale(1.1);
 }
 
 /* 5. Secciones Generales */
@@ -165,7 +215,28 @@ main h2 {
     margin-bottom: 1.5rem;
 }
 
-/* 6. Galería de Trabajos (Flexbox) */
+/* 6. Galería Dinámica e Interactiva (Páginas 7, 11 y 12 del PDF) */
+.gallery .gallery-featured {
+    max-width: 800px;
+    margin: 0 auto 2rem;
+}
+
+.gallery .gallery-featured img {
+    width: 100%;
+    height: auto;
+    max-height: 480px;
+    object-fit: cover;
+    border: 2px solid var(--color-principal);
+    border-radius: 0.6rem;
+    box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+    transition: opacity 0.25s ease;
+}
+
+/* Clase fade para transición suave de imagen */
+.gallery .gallery-featured img.fade {
+    opacity: 0;
+}
+
 .gallery .thumbnails {
     display: flex;
     gap: 1.2rem;
@@ -173,18 +244,32 @@ main h2 {
     flex-wrap: wrap;
 }
 
-.gallery img {
-    width: 400px;
-    height: 250px;
+.gallery .thumb-item {
+    cursor: pointer;
+    outline: none;
+}
+
+.gallery .thumb-item img {
+    width: 320px;
+    height: 200px;
     object-fit: cover;
     border: 1px solid var(--color-borde);
     border-radius: 0.5rem;
-    transition: transform 0.2s, border-color 0.2s;
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.gallery img:hover {
-    transform: scale(1.03);
+/* Feedback visual: :hover, :focus, transform: scale() (Página 7 del PDF) */
+.gallery .thumb-item:hover img,
+.gallery .thumb-item:focus-visible img {
+    transform: scale(1.05);
     border-color: var(--color-principal);
+    box-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
+}
+
+/* Miniatura activa */
+.gallery .thumb-item.active img {
+    border-color: var(--color-principal);
+    box-shadow: 0 0 10px rgba(0, 242, 254, 0.6);
 }
 
 .gallery figcaption {
