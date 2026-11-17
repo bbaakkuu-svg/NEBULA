@@ -2,88 +2,138 @@
 // INTERACTIVIDAD Y MULTIMEDIA — NÉBULA
 // ============================================================
 
-// 1. Visor de Galería Dinámico
 const mainImage = document.querySelector('#main-image');
-const mainCaption = document.querySelector('#main-caption');
+const mainCreditAuthor = document.querySelector('#main-credit-author');
 const thumbnails = document.querySelectorAll('.thumb-item');
 
-if (mainImage && thumbnails.length > 0) {
+if (mainImage && mainCreditAuthor && thumbnails.length) {
+    let galleryTimer;
+    let pendingThumbnail = null;
+
     thumbnails.forEach(thumb => {
-        const cambiarImagen = () => {
-            const img = thumb.querySelector('img');
-            const caption = thumb.querySelector('figcaption');
+        thumb.addEventListener('click', () => {
+            if (thumb === pendingThumbnail) return;
 
-            mainImage.classList.add('fade');
-            setTimeout(() => {
-                mainImage.src = img.src;
-                mainImage.alt = img.alt;
-                if (caption) mainCaption.innerHTML = caption.innerHTML;
-
-                thumbnails.forEach(t => t.classList.remove('active'));
-                thumb.classList.add('active');
-                mainImage.classList.remove('fade');
-            }, 200);
-        };
-
-        thumb.addEventListener('click', cambiarImagen);
-        thumb.addEventListener('keydown', e => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                cambiarImagen();
+            if (thumb.classList.contains('active')) {
+                if (pendingThumbnail) {
+                    window.clearTimeout(galleryTimer);
+                    pendingThumbnail = null;
+                    mainImage.classList.remove('fade');
+                }
+                return;
             }
+
+            const image = thumb.querySelector('img');
+            if (!image) return;
+
+            window.clearTimeout(galleryTimer);
+            pendingThumbnail = thumb;
+            mainImage.classList.add('fade');
+
+            galleryTimer = window.setTimeout(() => {
+                mainImage.src = image.src;
+                mainImage.alt = thumb.dataset.imageAlt;
+                mainCreditAuthor.href = thumb.dataset.creditUrl;
+                mainCreditAuthor.textContent = thumb.dataset.creditName;
+
+                thumbnails.forEach(item => {
+                    const isActive = item === thumb;
+                    item.classList.toggle('active', isActive);
+                    item.setAttribute('aria-pressed', String(isActive));
+                });
+                pendingThumbnail = null;
+                mainImage.classList.remove('fade');
+            }, 250);
         });
     });
 }
 
-// 2. Modal de Vídeo
 const videoModal = document.querySelector('#video-modal');
 const openModalBtn = document.querySelector('#open-modal-btn');
 const closeModalBtn = document.querySelector('#close-modal-btn');
 const modalVideo = document.querySelector('#modal-video');
 const modalBackdrop = document.querySelector('.modal-backdrop');
+const videoStatus = document.querySelector('#video-status');
 
-if (openModalBtn && videoModal && modalVideo) {
-    const abrirModal = () => {
-        videoModal.hidden = false;
-        modalVideo.play();
-    };
+if (videoModal && openModalBtn && closeModalBtn && modalVideo && modalBackdrop && videoStatus) {
+    const focusableElements = [closeModalBtn, modalVideo];
 
-    const cerrarModal = () => {
+    const closeModal = () => {
         modalVideo.pause();
         videoModal.hidden = true;
+        videoStatus.textContent = '';
+        openModalBtn.focus();
     };
 
-    openModalBtn.addEventListener('click', abrirModal);
-    closeModalBtn.addEventListener('click', cerrarModal);
-    modalBackdrop.addEventListener('click', cerrarModal);
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape' && !videoModal.hidden) {
-            cerrarModal();
+    openModalBtn.addEventListener('click', () => {
+        videoModal.hidden = false;
+        closeModalBtn.focus();
+        videoStatus.textContent = '';
+        modalVideo.play().catch(() => {
+            if (!videoModal.hidden) {
+                videoStatus.textContent = 'No se pudo iniciar el vídeo automáticamente. Usa los controles para reproducirlo.';
+            }
+        });
+    });
+
+    closeModalBtn.addEventListener('click', closeModal);
+    modalBackdrop.addEventListener('click', closeModal);
+
+    document.addEventListener('keydown', event => {
+        if (videoModal.hidden) return;
+
+        if (event.key === 'Escape') {
+            closeModal();
+        } else if (event.key === 'Tab') {
+            const first = focusableElements[0];
+            const last = focusableElements[focusableElements.length - 1];
+
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
         }
     });
 }
 
-// 3. Reproductor de Audio Personalizado
 const ambientAudio = document.querySelector('#ambient-audio');
 const audioToggleBtn = document.querySelector('#audio-toggle-btn');
 const audioBtnIcon = document.querySelector('#audio-btn-icon');
 const audioBtnText = document.querySelector('#audio-btn-text');
+const audioStatus = document.querySelector('#audio-status');
 
-if (ambientAudio && audioToggleBtn) {
+if (ambientAudio && audioToggleBtn && audioBtnIcon && audioBtnText && audioStatus) {
+    let playRequestId = 0;
+
+    const updateAudioButton = () => {
+        const isPlaying = !ambientAudio.paused && !ambientAudio.ended;
+        audioToggleBtn.setAttribute('aria-pressed', String(isPlaying));
+        audioBtnIcon.textContent = isPlaying ? '\u275A\u275A' : '\u25B6';
+        audioBtnText.textContent = isPlaying
+            ? 'Pausar ambiente espacial'
+            : 'Escuchar ambiente espacial';
+    };
+
     audioToggleBtn.addEventListener('click', () => {
+        audioStatus.textContent = '';
+
         if (ambientAudio.paused) {
-            ambientAudio.play();
-            audioBtnIcon.innerHTML = '&#10074;&#10074;';
-            audioBtnText.textContent = 'Pausar ambiente espacial';
+            const requestId = ++playRequestId;
+            ambientAudio.play().catch(() => {
+                if (requestId !== playRequestId) return;
+                audioStatus.textContent = 'No se pudo reproducir el audio. Comprueba el archivo o inténtalo de nuevo.';
+                updateAudioButton();
+            });
         } else {
+            playRequestId++;
             ambientAudio.pause();
-            audioBtnIcon.innerHTML = '&#9658;';
-            audioBtnText.textContent = 'Escuchar ambiente espacial';
         }
     });
 
-    ambientAudio.addEventListener('ended', () => {
-        audioBtnIcon.innerHTML = '&#9658;';
-        audioBtnText.textContent = 'Escuchar ambiente espacial';
-    });
+    ambientAudio.addEventListener('play', updateAudioButton);
+    ambientAudio.addEventListener('pause', updateAudioButton);
+    ambientAudio.addEventListener('ended', updateAudioButton);
 }

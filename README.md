@@ -27,8 +27,8 @@ Página de presentación para la artista digital ficticia **Nébula**, especiali
 * **Imágenes estáticas (`.webp` frente a `.jpg` o `.png`):**
   WebP proporciona algoritmos de compresión predictiva superiores tanto en modalidades con pérdida (*lossy*) como sin pérdida (*lossless*). Permite reducir el peso entre un 25% y un 35% respecto a JPEG manteniendo la misma calidad visual, y soporta canal alfa (transparencia), eliminando la necesidad de pesados archivos PNG. Además, cuenta con soporte nativo en todos los navegadores web actuales.
 
-* **Logotipo (`.webp` / justificación técnica de `.svg`):**
-  Para entornos web de producción, el formato óptimo para un logotipo vectorial es **SVG** (Scalable Vector Graphics), ya que al basarse en código XML y vectores matemáticos es infinitamente escalable a cualquier densidad de pantalla (Retina, 4K) sin pérdida de nitidez y con un peso mínimo en bytes. Al disponer en este caso de un recurso rasterizado con iluminación y degradados complejos, se procesó a WebP con transparencia y modo de fusión (*mix-blend-mode*) para integrarlo de forma fluida con el tema oscuro.
+* **Logotipo (SVG inline):**
+  El logotipo se dibuja como SVG inline en el DOM: sus clases permiten cambiar `fill` y `stroke` desde CSS, y su escalado no pierde nitidez. A diferencia de un SVG cargado mediante `<img>`, el SVG inline permite seleccionar sus formas y adaptar sus colores con las variables del tema. El archivo `assets/img/logo.webp` se conserva en el repositorio, pero no se utiliza en las páginas actuales.
 
 * **Animación Call to Action (`.webp animado` frente a `.gif`):**
   WebP animado admite color real de 24 bits con canal alfa de 8 bits (a diferencia de la paleta limitada a 256 colores y transparencia binaria de GIF). Ofrece una tasa de compresión drásticamente mayor (apenas 7 KB frente a los 50-100 KB de un GIF equivalente), optimizando el rendimiento de carga y el consumo de datos (WPO).
@@ -80,9 +80,9 @@ Página de presentación para la artista digital ficticia **Nébula**, especiali
 └── assets/
     ├── img/
     │   ├── hero.webp           (1920×1080, 150 KB)
-    │   ├── logo.webp           (64×64, integrado)
+    │   ├── logo.webp           (recurso incluido, no utilizado)
     │   ├── poster.webp         (miniatura de precarga de vídeo)
-    │   ├── cta-animation.webp  (animación WebP en bucle, 7 KB)
+    │   ├── cta-animation.webp  (recurso incluido, no utilizado)
     │   ├── thumb1.webp         (400×250, 11 KB)
     │   ├── thumb2.webp         (400×250, 18 KB)
     │   └── thumb3.webp         (400×250, 6 KB)
@@ -117,14 +117,6 @@ Si cualquiera de los recursos empleados (por ejemplo, el clip de vídeo o la mú
 
 ## Verificación Cross-Browser y Multi-Dispositivo
 
-### Navegadores Comprobados
-- **Google Chrome / Microsoft Edge (Motor Blink):** Renderizado perfecto de SVG inline, gradientes, modal con API HTMLMediaElement (`.play()` y `.pause()`), audio personalizado y transiciones CSS.
-- **Mozilla Firefox (Motor Gecko):** Compatibilidad completa con la reproducción de vídeo WebM y audio OGG Opus, transiciones de opacidad en la galería y foco por teclado.
-
-### Pruebas Multi-Dispositivo y Accesibilidad Táctil
-Mediante el modo de inspección de dispositivos (F12 - Device Mode) de DevTools se verificaron las resoluciones móviles (360×640 px, 375×667 px) y tabletas (768×1024 px):
-- **Tamaño de destino táctil (Touch Target):** Todos los elementos interactivos (enlaces de navegación, botón de llamada a la acción, botón del modal, botón de cierre y botón de audio) tienen unas dimensiones mínimas de **44×44 px**, cumpliendo la pauta de accesibilidad WCAG 2.1 AA para dispositivos táctiles.
-- **Navegación por teclado y foco visible:** Todos los elementos interactivos responden al tabulador con un contorno visible (`:focus-visible`).
 
 
 ---

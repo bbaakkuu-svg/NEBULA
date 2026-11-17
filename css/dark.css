@@ -1,21 +1,13 @@
-/* ============================================================
-   TEMA OSCURO — LANDING PAGE "NÉBULA"
-   ============================================================ */
-
-/* 1. Variables de Color Globales */
 :root {
-    --color-fondo:     #0a0d1a;   /* Azul oscuro espacial */
-    --color-principal: #00f2fe;   /* Cian de acento */
-    --color-texto:     #f1f5f9;   /* Blanco para lectura */
-    --color-muted:     #94a3b8;   /* Gris para textos secundarios */
-    --color-borde:     #374151;   /* Borde tenue de tarjetas */
-
-    /* Variables dinámicas para el Logo SVG */
-    --logo-planeta:    #7c3aed;   /* Violeta para el planeta */
-    --logo-anillo:     #00f2fe;   /* Cian neón para el anillo */
+    --color-fondo: #0a0d1a;
+    --color-principal: #00f2fe;
+    --color-texto: #f1f5f9;
+    --color-muted: #94a3b8;
+    --color-borde: #374151;
+    --logo-planeta: #7c3aed;
+    --logo-anillo: #00f2fe;
 }
 
-/* 2. Reset Básico */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -27,11 +19,9 @@ html {
 }
 
 body {
-    font-family: Arial, sans-serif;
-    font-size: 16px;
-    background-color: var(--color-fondo);
+    font: 16px/1.6 Arial, sans-serif;
+    background: var(--color-fondo);
     color: var(--color-texto);
-    line-height: 1.6;
 }
 
 a {
@@ -43,91 +33,92 @@ a:hover {
     text-decoration: underline;
 }
 
+a:focus-visible, button:focus-visible {
+    outline: 3px solid var(--color-principal);
+    outline-offset: 3px;
+}
+
 img, video {
-    max-width: 100%;
     display: block;
+    max-width: 100%;
 }
 
 figcaption {
-    font-size: 0.75rem;
-    color: var(--color-muted);
     margin-top: 0.4rem;
+    color: var(--color-muted);
+    font-size: 0.75rem;
 }
 
-/* 3. Cabecera y Logotipo SVG Inline */
 .site-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.8rem 2rem;
-    background-color: rgba(10, 13, 26, 0.95);
-    border-bottom: 1px solid var(--color-borde);
     position: sticky;
     top: 0;
     z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.8rem 2rem;
+    border-bottom: 1px solid var(--color-borde);
+    background: rgba(10, 13, 26, 0.95);
 }
 
-.logo-link {
+.logo-link, nav a {
     display: inline-flex;
     align-items: center;
-    gap: 0.6rem;
-    outline: none;
     min-height: 44px;
 }
 
+.logo-link {
+    gap: 0.6rem;
+}
+
 .logo-svg {
+    display: block;
     width: 50px;
     height: 50px;
-    display: block;
     transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.logo-planeta, .logo-anillo {
+    transition: fill 0.3s ease, stroke 0.3s ease;
 }
 
 .logo-planeta {
     fill: var(--logo-planeta);
-    transition: fill 0.3s ease;
 }
 
 .logo-anillo {
     stroke: var(--logo-anillo);
-    transition: stroke 0.3s ease;
 }
 
-.logo-link:hover,
-.logo-link:focus-visible {
-    --logo-planeta: #ec4899;   /* Planeta rosa */
-    --logo-anillo:  #ffffff;   /* Anillo blanco brillante */
+.logo-link:hover, .logo-link:focus-visible {
+    --logo-planeta: #ec4899;
+    --logo-anillo: #fff;
 }
 
-.logo-link:hover .logo-svg,
-.logo-link:focus-visible .logo-svg {
+.logo-link:hover .logo-svg, .logo-link:focus-visible .logo-svg {
     transform: scale(1.1);
     filter: drop-shadow(0 0 8px var(--color-principal));
 }
 
 .logo-text {
-    font-family: Arial Black, Arial, sans-serif;
-    font-weight: 900;
-    font-size: 2.2rem;
+    font: 900 2.2rem Arial Black, Arial, sans-serif;
     letter-spacing: 0.05em;
     background: linear-gradient(90deg, #67e8f9, #a78bfa, #e9a8d0);
     -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
     background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 nav ul {
-    list-style: none;
     display: flex;
     gap: 1.5rem;
+    list-style: none;
 }
 
 nav a {
-    color: var(--color-muted);
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
     min-width: 44px;
     padding: 0 0.5rem;
+    color: var(--color-muted);
     transition: color 0.2s;
 }
 
@@ -136,7 +127,6 @@ nav a:hover {
     text-decoration: none;
 }
 
-/* 4. Portada (Hero) y Botones CTA */
 .hero {
     position: relative;
     text-align: center;
@@ -149,19 +139,19 @@ nav a:hover {
 }
 
 .hero figcaption {
+    display: inline-block;
     padding: 0.3rem 0.6rem;
     background: rgba(0, 0, 0, 0.6);
-    display: inline-block;
 }
 
 .hero h1 {
     position: absolute;
     top: 45%;
     left: 50%;
+    width: 90%;
     transform: translate(-50%, -50%);
     font-size: clamp(1.5rem, 3.5vw, 2.8rem);
     text-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
-    width: 90%;
 }
 
 .cta-button {
@@ -169,28 +159,26 @@ nav a:hover {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    min-height: 44px;
     min-width: 44px;
-    background: none;
-    border: 2px solid var(--color-principal);
-    color: var(--color-principal);
+    min-height: 44px;
+    margin-top: 1.2rem;
     padding: 0.6rem 1.4rem;
+    border: 2px solid var(--color-principal);
     border-radius: 2rem;
+    background: none;
+    color: var(--color-principal);
     font-size: 1rem;
     font-weight: bold;
-    margin-top: 1.2rem;
-    cursor: pointer;
     text-decoration: none;
+    cursor: pointer;
     transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
-.cta-button:hover,
-.cta-button:focus-visible {
+.cta-button:hover, .cta-button:focus-visible {
     background: var(--color-principal);
     color: var(--color-fondo);
-    text-decoration: none;
-    outline: none;
     box-shadow: 0 0 15px rgba(0, 242, 254, 0.5);
+    text-decoration: none;
 }
 
 .cta-icon {
@@ -200,31 +188,28 @@ nav a:hover {
     transition: transform 0.3s ease;
 }
 
-.cta-button:hover .cta-icon,
-.cta-button:focus-visible .cta-icon {
+.cta-button:hover .cta-icon, .cta-button:focus-visible .cta-icon {
     transform: translateY(-2px) scale(1.1);
 }
 
-/* 5. Secciones Generales */
 main section {
     padding: 2.5rem 1.5rem;
     text-align: center;
 }
 
 main h2 {
+    margin-bottom: 1.5rem;
     color: var(--color-principal);
     font-size: 1.8rem;
-    margin-bottom: 1.5rem;
 }
 
 main section p {
-    color: var(--color-muted);
-    font-size: 1.05rem;
     max-width: 600px;
     margin: 0 auto 1.2rem;
+    color: var(--color-muted);
+    font-size: 1.05rem;
 }
 
-/* 6. Galería Dinámica */
 .gallery-featured {
     max-width: 800px;
     margin: 0 auto 2rem;
@@ -233,9 +218,9 @@ main section p {
 .gallery-featured img {
     width: 100%;
     max-height: 480px;
-    object-fit: cover;
     border: 2px solid var(--color-principal);
     border-radius: 0.6rem;
+    object-fit: cover;
     box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
     transition: opacity 0.25s ease;
 }
@@ -246,30 +231,32 @@ main section p {
 
 .thumbnails {
     display: flex;
-    gap: 1.2rem;
-    justify-content: center;
     flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.2rem;
 }
 
 .thumb-item {
-    cursor: pointer;
-    outline: none;
+    display: block;
+    width: min(100%, 320px);
+    padding: 0;
+    border: 0;
     border-radius: 0.5rem;
-    min-width: 44px;
-    min-height: 44px;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
 }
 
 .thumb-item img {
-    width: 320px;
+    width: 100%;
     height: 200px;
-    object-fit: cover;
     border: 1px solid var(--color-borde);
     border-radius: 0.5rem;
+    object-fit: cover;
     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.thumb-item:hover img,
-.thumb-item:focus-visible img {
+.thumb-item:hover img, .thumb-item:focus-visible img {
     transform: scale(1.05);
     border-color: var(--color-principal);
     box-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
@@ -280,14 +267,20 @@ main section p {
     box-shadow: 0 0 10px rgba(0, 242, 254, 0.6);
 }
 
-/* 7. Modal de Vídeo */
+.media-status {
+    min-height: 1.5em;
+    margin: 0.5rem auto 0;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+}
+
 .modal {
     position: fixed;
     inset: 0;
+    z-index: 1000;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 1000;
 }
 
 .modal[hidden] {
@@ -304,17 +297,17 @@ main section p {
     position: relative;
     width: 90%;
     max-width: 760px;
-    background: #0f1424;
+    overflow: hidden;
     border: 1px solid var(--color-borde);
     border-radius: 0.8rem;
-    overflow: hidden;
+    background: #0f1424;
     box-shadow: 0 0 30px rgba(0, 242, 254, 0.25);
 }
 
 .modal-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
     padding: 0.8rem 1.2rem;
     border-bottom: 1px solid var(--color-borde);
 }
@@ -325,32 +318,28 @@ main section p {
 }
 
 .modal-close {
-    background: none;
-    border: none;
-    color: var(--color-muted);
-    font-size: 1.8rem;
-    cursor: pointer;
-    min-width: 44px;
-    min-height: 44px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    border: 0;
+    background: none;
+    color: var(--color-muted);
+    font-size: 1.8rem;
+    cursor: pointer;
     transition: color 0.2s;
 }
 
-.modal-close:hover,
-.modal-close:focus-visible {
+.modal-close:hover, .modal-close:focus-visible {
     color: var(--color-principal);
-    outline: none;
 }
 
 .modal-body video {
     width: 100%;
     max-height: 70vh;
-    display: block;
 }
 
-/* 8. Página de Créditos y Tabla */
 .credits-container {
     max-width: 900px;
     margin: 2rem auto;
@@ -359,25 +348,24 @@ main section p {
 
 .credits-table {
     width: 100%;
-    border-collapse: collapse;
     margin: 2rem 0;
+    border-collapse: collapse;
     font-size: 0.95rem;
     text-align: left;
 }
 
-.credits-table th,
-.credits-table td {
+.credits-table th, .credits-table td {
     padding: 0.8rem 1rem;
     border: 1px solid var(--color-borde);
 }
 
 .credits-table th {
-    background-color: rgba(0, 242, 254, 0.1);
+    background: rgba(0, 242, 254, 0.1);
     color: var(--color-principal);
 }
 
 .credits-table tr:nth-child(even) {
-    background-color: rgba(255, 255, 255, 0.02);
+    background: rgba(255, 255, 255, 0.02);
 }
 
 .back-link {
@@ -385,21 +373,19 @@ main section p {
     margin: 1.5rem 0;
 }
 
-/* 9. Pie de Página y Licencias */
 .site-footer {
-    text-align: center;
     padding: 2rem 1.5rem;
-    font-size: 0.9rem;
-    color: var(--color-muted);
     border-top: 1px solid var(--color-borde);
-    background-color: #070a14;
+    background: #070a14;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    text-align: center;
 }
 
 .site-footer p {
     margin-bottom: 0.5rem;
 }
 
-/* 10. Adaptabilidad Multi-Dispositivo */
 @media (max-width: 600px) {
     .site-header {
         flex-direction: column;
@@ -414,8 +400,6 @@ main section p {
     }
 
     .thumb-item img {
-        width: 100%;
-        max-width: 320px;
         height: auto;
     }
 
@@ -423,8 +407,16 @@ main section p {
         font-size: 0.85rem;
     }
 
-    .credits-table th,
-    .credits-table td {
+    .credits-table th, .credits-table td {
         padding: 0.5rem 0.6rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
     }
 }

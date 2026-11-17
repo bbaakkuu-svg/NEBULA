@@ -52,7 +52,7 @@
     <section class="hero" aria-label="Portada">
         <figure>
             <img src="assets/img/hero.webp" alt="Paisaje espacial futurista: lago reflejando un cielo estrellado"
-                width="1920" height="1080" loading="lazy">
+                width="1920" height="1080" fetchpriority="high">
             <figcaption>
                 Crédito: <a href="https://pixabay.com/users/evgenit-4930349/" target="_blank"
                     rel="noopener noreferrer">Evgeni T</a>
@@ -85,45 +85,33 @@
                 <img id="main-image" src="assets/img/thumb1.webp"
                     alt="Composición espacial: satélites en órbita con fondo nebuloso" width="800" height="450">
                 <figcaption id="main-caption">
-                    Crédito: <a href="https://pixabay.com/users/geralt-9301/" target="_blank"
-                        rel="noopener noreferrer">Geralt</a>
-                    vía Pixabay — Licencia Pixabay Content License
+                    Crédito: <a id="main-credit-author" href="https://pixabay.com/users/geralt-9301/"
+                        target="_blank" rel="noopener noreferrer">Geralt</a>
+                    vía Pixabay — <a href="https://pixabay.com/service/license/" target="_blank"
+                        rel="noopener noreferrer">Pixabay Content License</a>
                 </figcaption>
             </figure>
 
             <!-- Tira de Miniaturas Interactivas -->
             <div class="thumbnails">
-
-                <figure class="thumb-item active" tabindex="0" role="button" aria-label="Ver imagen 1">
-                    <img src="assets/img/thumb1.webp" alt="Composición espacial: satélites en órbita con fondo nebuloso"
-                        width="400" height="250" loading="lazy">
-                    <figcaption>
-                        Crédito: <a href="https://pixabay.com/users/geralt-9301/" target="_blank"
-                            rel="noopener noreferrer">Geralt</a>
-                        vía Pixabay — Licencia Pixabay Content License
-                    </figcaption>
-                </figure>
-
-                <figure class="thumb-item" tabindex="0" role="button" aria-label="Ver imagen 2">
-                    <img src="assets/img/thumb2.webp" alt="OVNI futurista sobrevolando un paisaje nocturno" width="400"
-                        height="250" loading="lazy">
-                    <figcaption>
-                        Crédito: <a href="https://pixabay.com/users/mastertux-470906/" target="_blank"
-                            rel="noopener noreferrer">MasterTux</a>
-                        vía Pixabay — Licencia Pixabay Content License
-                    </figcaption>
-                </figure>
-
-                <figure class="thumb-item" tabindex="0" role="button" aria-label="Ver imagen 3">
-                    <img src="assets/img/thumb3.webp" alt="Nave espacial cruzando una nebulosa de colores vivos"
-                        width="400" height="250" loading="lazy">
-                    <figcaption>
-                        Crédito: <a href="https://pixabay.com/users/stevebidmead-249449/" target="_blank"
-                            rel="noopener noreferrer">SteveBidmead</a>
-                        vía Pixabay — Licencia Pixabay Content License
-                    </figcaption>
-                </figure>
-
+                <button class="thumb-item active" type="button" aria-label="Ver imagen: satélites en órbita"
+                    aria-pressed="true" data-credit-name="Geralt"
+                    data-credit-url="https://pixabay.com/users/geralt-9301/"
+                    data-image-alt="Composición espacial: satélites en órbita con fondo nebuloso">
+                    <img src="assets/img/thumb1.webp" alt="" width="400" height="250" loading="lazy">
+                </button>
+                <button class="thumb-item" type="button" aria-label="Ver imagen: OVNI sobre un paisaje nocturno"
+                    aria-pressed="false" data-credit-name="MasterTux"
+                    data-credit-url="https://pixabay.com/users/mastertux-470906/"
+                    data-image-alt="OVNI futurista sobrevolando un paisaje nocturno">
+                    <img src="assets/img/thumb2.webp" alt="" width="400" height="250" loading="lazy">
+                </button>
+                <button class="thumb-item" type="button" aria-label="Ver imagen: nave cruzando una nebulosa"
+                    aria-pressed="false" data-credit-name="SteveBidmead"
+                    data-credit-url="https://pixabay.com/users/stevebidmead-249449/"
+                    data-image-alt="Nave espacial cruzando una nebulosa de colores vivos">
+                    <img src="assets/img/thumb3.webp" alt="" width="400" height="250" loading="lazy">
+                </button>
             </div>
         </section>
 
@@ -150,6 +138,7 @@
                         <source src="assets/video/presentacion2.mp4" type="video/mp4">
                         Tu navegador no soporta la reproducción de vídeo HTML5.
                     </video>
+                    <p id="video-status" class="media-status" role="status" aria-live="polite"></p>
                 </div>
             </div>
         </div>
@@ -162,10 +151,11 @@
                 <source src="assets/audio/ambient.ogg" type="audio/ogg">
                 <source src="assets/audio/ambient.mp3" type="audio/mpeg">
             </audio>
-            <button id="audio-toggle-btn" class="cta-button" type="button">
+            <button id="audio-toggle-btn" class="cta-button" type="button" aria-pressed="false">
                 <span id="audio-btn-icon">&#9658;</span>
                 <span id="audio-btn-text">Escuchar ambiente espacial</span>
             </button>
+            <p id="audio-status" class="media-status" role="status" aria-live="polite"></p>
         </section>
 
         <!-- CONTACTO -->
