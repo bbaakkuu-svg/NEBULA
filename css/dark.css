@@ -1,31 +1,22 @@
 /* ============================================================
-   TEMA OSCURO — LANDING PAGE "NÉBULA" (1º DAW - UT4)
+   TEMA OSCURO — LANDING PAGE "NÉBULA"
    ============================================================ */
 
 /* 1. Variables de Color Globales */
 :root {
-    --color-fondo: #0a0d1a;
-    /* Azul oscuro espacial */
-    --color-principal: #00f2fe;
-    /* Cian de acento */
-    --color-texto: #f1f5f9;
-    /* Blanco para lectura */
-    --color-muted: #94a3b8;
-    /* Gris para textos secundarios */
-    --color-borde: #374151;
-    /* Borde tenue de tarjetas */
+    --color-fondo:     #0a0d1a;   /* Azul oscuro espacial */
+    --color-principal: #00f2fe;   /* Cian de acento */
+    --color-texto:     #f1f5f9;   /* Blanco para lectura */
+    --color-muted:     #94a3b8;   /* Gris para textos secundarios */
+    --color-borde:     #374151;   /* Borde tenue de tarjetas */
 
     /* Variables dinámicas para el Logo SVG */
-    --logo-planeta: #7c3aed;
-    /* Violeta para el planeta */
-    --logo-anillo: #00f2fe;
-    /* Cian neón para el anillo */
+    --logo-planeta:    #7c3aed;   /* Violeta para el planeta */
+    --logo-anillo:     #00f2fe;   /* Cian neón para el anillo */
 }
 
 /* 2. Reset Básico */
-*,
-*::before,
-*::after {
+*, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
@@ -52,8 +43,7 @@ a:hover {
     text-decoration: underline;
 }
 
-img,
-video {
+img, video {
     max-width: 100%;
     display: block;
 }
@@ -82,6 +72,7 @@ figcaption {
     align-items: center;
     gap: 0.6rem;
     outline: none;
+    min-height: 44px;
 }
 
 .logo-svg {
@@ -91,7 +82,6 @@ figcaption {
     transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-/* Propiedades visuales SVG: fill y stroke */
 .logo-planeta {
     fill: var(--logo-planeta);
     transition: fill 0.3s ease;
@@ -102,13 +92,10 @@ figcaption {
     transition: stroke 0.3s ease;
 }
 
-/* Interacción :hover y :focus-visible en el logo */
 .logo-link:hover,
 .logo-link:focus-visible {
-    --logo-planeta: #ec4899;
-    /* Planeta rosa */
-    --logo-anillo: #ffffff;
-    /* Anillo blanco brillante */
+    --logo-planeta: #ec4899;   /* Planeta rosa */
+    --logo-anillo:  #ffffff;   /* Anillo blanco brillante */
 }
 
 .logo-link:hover .logo-svg,
@@ -136,6 +123,11 @@ nav ul {
 
 nav a {
     color: var(--color-muted);
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0 0.5rem;
     transition: color 0.2s;
 }
 
@@ -144,7 +136,7 @@ nav a:hover {
     text-decoration: none;
 }
 
-/* 4. Portada (Hero) y Botón CTA */
+/* 4. Portada (Hero) y Botones CTA */
 .hero {
     position: relative;
     text-align: center;
@@ -175,7 +167,11 @@ nav a:hover {
 .cta-button {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
+    min-height: 44px;
+    min-width: 44px;
+    background: none;
     border: 2px solid var(--color-principal);
     color: var(--color-principal);
     padding: 0.6rem 1.4rem;
@@ -183,6 +179,8 @@ nav a:hover {
     font-size: 1rem;
     font-weight: bold;
     margin-top: 1.2rem;
+    cursor: pointer;
+    text-decoration: none;
     transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
@@ -219,7 +217,14 @@ main h2 {
     margin-bottom: 1.5rem;
 }
 
-/* 6. Galería Dinámica e Interactiva (Páginas 7 y 11 del PDF) */
+main section p {
+    color: var(--color-muted);
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin: 0 auto 1.2rem;
+}
+
+/* 6. Galería Dinámica */
 .gallery-featured {
     max-width: 800px;
     margin: 0 auto 2rem;
@@ -235,7 +240,6 @@ main h2 {
     transition: opacity 0.25s ease;
 }
 
-/* Clase fade para transición suave entre imágenes */
 .gallery-featured img.fade {
     opacity: 0;
 }
@@ -250,6 +254,9 @@ main h2 {
 .thumb-item {
     cursor: pointer;
     outline: none;
+    border-radius: 0.5rem;
+    min-width: 44px;
+    min-height: 44px;
 }
 
 .thumb-item img {
@@ -261,7 +268,6 @@ main h2 {
     transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Feedback visual: :hover, :focus, transform: scale() */
 .thumb-item:hover img,
 .thumb-item:focus-visible img {
     transform: scale(1.05);
@@ -269,39 +275,156 @@ main h2 {
     box-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
 }
 
-/* Indicador de miniatura activa */
 .thumb-item.active img {
     border-color: var(--color-principal);
     box-shadow: 0 0 10px rgba(0, 242, 254, 0.6);
 }
 
-/* 7. Vídeo y Audio Multimedia */
-.presentation-video video {
-    max-width: 720px;
-    width: 100%;
-    border: 1px solid var(--color-borde);
-    border-radius: 0.5rem;
-    margin: 0 auto;
+/* 7. Modal de Vídeo */
+.modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
 }
 
-.ambient-audio audio {
+.modal[hidden] {
+    display: none;
+}
+
+.modal-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+}
+
+.modal-content {
+    position: relative;
+    width: 90%;
+    max-width: 760px;
+    background: #0f1424;
+    border: 1px solid var(--color-borde);
+    border-radius: 0.8rem;
+    overflow: hidden;
+    box-shadow: 0 0 30px rgba(0, 242, 254, 0.25);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.8rem 1.2rem;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.modal-header h3 {
+    color: var(--color-principal);
+    font-size: 1.2rem;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    color: var(--color-muted);
+    font-size: 1.8rem;
+    cursor: pointer;
+    min-width: 44px;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.modal-close:hover,
+.modal-close:focus-visible {
+    color: var(--color-principal);
+    outline: none;
+}
+
+.modal-body video {
     width: 100%;
-    max-width: 480px;
-    margin: 0 auto;
+    max-height: 70vh;
     display: block;
 }
 
-/* 8. Contacto y Pie de Página */
-#contact p {
-    color: var(--color-muted);
-    font-size: 1.05rem;
+/* 8. Página de Créditos y Tabla */
+.credits-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 0 1.5rem;
 }
 
+.credits-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+    text-align: left;
+}
+
+.credits-table th,
+.credits-table td {
+    padding: 0.8rem 1rem;
+    border: 1px solid var(--color-borde);
+}
+
+.credits-table th {
+    background-color: rgba(0, 242, 254, 0.1);
+    color: var(--color-principal);
+}
+
+.credits-table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.02);
+}
+
+.back-link {
+    display: inline-block;
+    margin: 1.5rem 0;
+}
+
+/* 9. Pie de Página y Licencias */
 .site-footer {
     text-align: center;
-    padding: 1.5rem;
-    font-size: 0.85rem;
+    padding: 2rem 1.5rem;
+    font-size: 0.9rem;
     color: var(--color-muted);
     border-top: 1px solid var(--color-borde);
     background-color: #070a14;
+}
+
+.site-footer p {
+    margin-bottom: 0.5rem;
+}
+
+/* 10. Adaptabilidad Multi-Dispositivo */
+@media (max-width: 600px) {
+    .site-header {
+        flex-direction: column;
+        gap: 0.8rem;
+        padding: 1rem;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.8rem;
+    }
+
+    .thumb-item img {
+        width: 100%;
+        max-width: 320px;
+        height: auto;
+    }
+
+    .credits-table {
+        font-size: 0.85rem;
+    }
+
+    .credits-table th,
+    .credits-table td {
+        padding: 0.5rem 0.6rem;
+    }
 }

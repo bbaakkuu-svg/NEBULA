@@ -18,7 +18,7 @@
     <header class="site-header">
         <div class="logo-container">
             <a href="#" class="logo-link" aria-label="Inicio - Nébula">
-                <!-- Logotipo en SVG Inline  -->
+                <!-- Logotipo SVG Inline -->
                 <svg class="logo-svg" viewBox="0 0 100 100" width="52" height="52" role="img" aria-labelledby="logo-title">
                     <title id="logo-title">Logotipo de Nébula: planeta con anillo</title>
                     <g transform="rotate(-15 50 50)">
@@ -62,7 +62,7 @@
         </figure>
         <h1>Bienvenido al Universo de Nébula</h1>
         <a href="#contact" class="cta-button">
-            <!-- Icono en SVG Inline (CE 4.a, 4.e) -->
+            <!-- Icono SVG Inline -->
             <svg class="cta-icon" viewBox="0 0 24 24" width="24" height="24" fill="none" aria-hidden="true">
                 <path class="cta-icon-envelope" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
@@ -76,7 +76,7 @@
          ===================================================== -->
     <main>
 
-        <!-- GALERÍA DINÁMICA E INTERACTIVA (RA4 - CE 4.e, 4.f) -->
+        <!-- GALERÍA DINÁMICA -->
         <section id="gallery" class="gallery" aria-labelledby="gallery-title">
             <h2 id="gallery-title">Galería</h2>
 
@@ -130,31 +130,45 @@
         <!-- VÍDEO DE PRESENTACIÓN -->
         <section id="video" class="presentation-video" aria-labelledby="video-title">
             <h2 id="video-title">Presentación</h2>
-            <figure>
-                <video controls poster="assets/img/poster.webp" width="720" height="405"
-                    aria-label="Vídeo de presentación de Nébula: animación espacial">
-                    <source src="assets/video/presentacion.webm" type="video/webm">
-                    <source src="assets/video/presentacion2.mp4" type="video/mp4">
-                    Tu navegador no soporta la reproducción de vídeo HTML5.
-                </video>
-                <figcaption>
-                    Crédito: Pixabay — Licencia <a href="https://pixabay.com/service/license/" target="_blank"
-                        rel="noopener noreferrer">Pixabay Content License</a>
-                </figcaption>
-            </figure>
+            <p>Descubre el proceso creativo y los paisajes de animación digital de Nébula.</p>
+            <button id="open-modal-btn" class="cta-button" type="button">
+                Ver Reel de Animación
+            </button>
         </section>
+
+        <!-- MODAL DE VÍDEO -->
+        <div id="video-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+            <div class="modal-backdrop"></div>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="modal-title">Reel de Animación</h3>
+                    <button id="close-modal-btn" class="modal-close" type="button" aria-label="Cerrar ventana">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <video id="modal-video" controls poster="assets/img/poster.webp" width="720" height="405">
+                        <source src="assets/video/presentacion.webm" type="video/webm">
+                        <source src="assets/video/presentacion2.mp4" type="video/mp4">
+                        Tu navegador no soporta la reproducción de vídeo HTML5.
+                    </video>
+                </div>
+            </div>
+        </div>
 
         <!-- AUDIO AMBIENTAL -->
         <section id="audio" class="ambient-audio" aria-labelledby="audio-title">
             <h2 id="audio-title">Ambiente Sonoro</h2>
-            <audio controls aria-label="Clip de audio ambiental de ciencia ficción">
+            <p>Sumérgete en la atmósfera cósmica mientras exploras las obras.</p>
+            <audio id="ambient-audio" preload="metadata">
                 <source src="assets/audio/ambient.ogg" type="audio/ogg">
                 <source src="assets/audio/ambient.mp3" type="audio/mpeg">
-                Tu navegador no soporta la reproducción de audio HTML5.
             </audio>
+            <button id="audio-toggle-btn" class="cta-button" type="button">
+                <span id="audio-btn-icon">&#9658;</span>
+                <span id="audio-btn-text">Escuchar ambiente espacial</span>
+            </button>
         </section>
 
-        <!-- CONTACTO (placeholder) -->
+        <!-- CONTACTO -->
         <section id="contact" aria-labelledby="contact-title">
             <h2 id="contact-title">Contacto</h2>
             <p>Para colaboraciones o consultas escríbeme a <a href="mailto:nebula@gmail.com">nebula@gmail.com</a>
@@ -167,10 +181,14 @@
          PIE DE PÁGINA
          ===================================================== -->
     <footer class="site-footer">
-        <p>&copy; 2026 Nébula. Todos los derechos reservados.</p>
+        <p class="license-info">
+            Esta obra está bajo una licencia <a href="https://creativecommons.org/licenses/by-nc/4.0/deed.es" target="_blank" rel="noopener noreferrer">Creative Commons Atribución-NoComercial 4.0 Internacional (CC BY-NC 4.0)</a>.
+        </p>
+        <p>
+            <a href="credits.html">Créditos y Atribuciones</a> | &copy; 2026 Nébula. Todos los derechos reservados.
+        </p>
     </footer>
 
-    <!-- JavaScript para interactividad (Separación de capas - Pág. 9 y 11 del PDF) -->
     <script src="js/main.js"></script>
 </body>
 

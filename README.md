@@ -71,9 +71,12 @@ Página de presentación para la artista digital ficticia **Nébula**, especiali
 ```
 /
 ├── index.html
+├── credits.html
 ├── README.md
 ├── css/
 │   └── dark.css
+├── js/
+│   └── main.js
 └── assets/
     ├── img/
     │   ├── hero.webp           (1920×1080, 150 KB)
@@ -90,6 +93,39 @@ Página de presentación para la artista digital ficticia **Nébula**, especiali
         ├── ambient.ogg         (Opus, 15s fade in/out, 250 KB)
         └── ambient.mp3         (fallback MP3, 15s fade in/out, 353 KB)
 ```
+
+---
+
+## Licencia de la Obra y Compatibilidad de Propiedad Intelectual
+
+### Licencia del Proyecto
+El diseño web, maquetación, código fuente (HTML5, CSS3, JavaScript) y elementos gráficos originales de este sitio web están protegidos bajo la licencia **Creative Commons Atribución-NoComercial 4.0 Internacional (CC BY-NC 4.0)**.
+
+### Justificación de Compatibilidad de Licencias
+Todos los recursos multimedia externos (fotografías, vídeo de fondo y pista musical ambiental) proceden de Pixabay bajo la **Pixabay Content License**. Dicha licencia autoriza la reproducción, distribución, modificación y comunicación pública de los contenidos sin coste, tanto para fines comerciales como no comerciales, y no impone cláusulas restrictivas ni obligaciones de compartir bajo la misma licencia (*copyleft*). Por tanto, la incorporación de dichos elementos en este proyecto es 100% compatible con la adopción de una licencia CC BY-NC 4.0 para el conjunto de la landing page.
+
+Las atribuciones completas se encuentran detalladas en la página accesible [`credits.html`](credits.html) y vinculada en el pie de página.
+
+### Escenario Hipotético: ¿Qué ocurriría si un recurso fuera CC BY-SA?
+La cláusula **ShareAlike (CompartirIgual / SA)** de Creative Commons introduce un requisito de reciprocidad ("copyleft"): cualquier obra derivada o adaptación que incorpore o transforme una obra licenciada como CC BY-SA debe ser distribuida **obligatoriamente bajo la misma licencia exacta (CC BY-SA) o una compatible**.
+
+Si cualquiera de los recursos empleados (por ejemplo, el clip de vídeo o la música) estuviese bajo licencia CC BY-SA:
+1. **Incompatibilidad con CC BY-NC:** No se podría licenciar la landing page como CC BY-NC, ya que la cláusula "NoComercial" añade una restricción que contradice los términos de CC BY-SA (que permite el uso comercial siempre que se comparta igual).
+2. **Obligación de licenciamiento derivado:** El proyecto completo (al tratarse de una obra derivada/compuesta) tendría que licenciarse forzosamente como **CC BY-SA**, permitiendo a terceros reutilizar, modificar y redistribuir la landing page bajo esas mismas libertades.
+
+---
+
+## Verificación Cross-Browser y Multi-Dispositivo
+
+### Navegadores Comprobados
+- **Google Chrome / Microsoft Edge (Motor Blink):** Renderizado perfecto de SVG inline, gradientes, modal con API HTMLMediaElement (`.play()` y `.pause()`), audio personalizado y transiciones CSS.
+- **Mozilla Firefox (Motor Gecko):** Compatibilidad completa con la reproducción de vídeo WebM y audio OGG Opus, transiciones de opacidad en la galería y foco por teclado.
+
+### Pruebas Multi-Dispositivo y Accesibilidad Táctil
+Mediante el modo de inspección de dispositivos (F12 - Device Mode) de DevTools se verificaron las resoluciones móviles (360×640 px, 375×667 px) y tabletas (768×1024 px):
+- **Tamaño de destino táctil (Touch Target):** Todos los elementos interactivos (enlaces de navegación, botón de llamada a la acción, botón del modal, botón de cierre y botón de audio) tienen unas dimensiones mínimas de **44×44 px**, cumpliendo la pauta de accesibilidad WCAG 2.1 AA para dispositivos táctiles.
+- **Navegación por teclado y foco visible:** Todos los elementos interactivos responden al tabulador con un contorno visible (`:focus-visible`).
+
 
 ---
 
