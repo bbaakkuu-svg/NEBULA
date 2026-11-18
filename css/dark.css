@@ -1,3 +1,4 @@
+/* Paleta compartida por las dos páginas y colores base del SVG inline. */
 :root {
     --color-fondo: #0a0d1a;
     --color-principal: #00f2fe;
@@ -8,6 +9,7 @@
     --logo-anillo: #00f2fe;
 }
 
+/* Evita que padding y bordes alteren el tamaño calculado de los elementos. */
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
@@ -33,6 +35,7 @@ a:hover {
     text-decoration: underline;
 }
 
+/* El foco visible facilita la navegación por teclado sin ocultar el indicador. */
 a:focus-visible, button:focus-visible {
     outline: 3px solid var(--color-principal);
     outline-offset: 3px;
@@ -61,6 +64,7 @@ figcaption {
     background: rgba(10, 13, 26, 0.95);
 }
 
+/* El enlace y el menú conservan un área táctil cómoda. */
 .logo-link, nav a {
     display: inline-flex;
     align-items: center;
@@ -90,6 +94,7 @@ figcaption {
     stroke: var(--logo-anillo);
 }
 
+/* Las variables heredadas permiten recolorear el SVG inline desde el enlace. */
 .logo-link:hover, .logo-link:focus-visible {
     --logo-planeta: #ec4899;
     --logo-anillo: #fff;
@@ -132,6 +137,7 @@ nav a:hover {
     text-align: center;
 }
 
+/* Mantiene la imagen de portada recortada sin deformar su proporción. */
 .hero img {
     width: 100%;
     max-height: 550px;
@@ -174,6 +180,7 @@ nav a:hover {
     transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
+/* Hover y foco comparten feedback para ratón, teclado y otros dispositivos. */
 .cta-button:hover, .cta-button:focus-visible {
     background: var(--color-principal);
     color: var(--color-fondo);
@@ -225,6 +232,7 @@ main section p {
     transition: opacity 0.25s ease;
 }
 
+/* main.js aplica esta clase brevemente al cambiar la imagen de la galería. */
 .gallery-featured img.fade {
     opacity: 0;
 }
@@ -262,12 +270,14 @@ main section p {
     box-shadow: 0 0 12px rgba(0, 242, 254, 0.4);
 }
 
+/* La miniatura activa se distingue además del efecto temporal de hover/foco. */
 .thumb-item.active img {
     border-color: var(--color-principal);
     box-shadow: 0 0 10px rgba(0, 242, 254, 0.6);
 }
 
 .media-status {
+    /* Reserva espacio para evitar saltos cuando JS anuncia un error multimedia. */
     min-height: 1.5em;
     margin: 0.5rem auto 0;
     color: var(--color-muted);
@@ -283,6 +293,7 @@ main section p {
     justify-content: center;
 }
 
+/* El modal usa flex; se fuerza el comportamiento nativo del atributo hidden. */
 .modal[hidden] {
     display: none;
 }
@@ -359,6 +370,7 @@ main section p {
     border: 1px solid var(--color-borde);
 }
 
+/* Destaca la cabecera y alterna filas para facilitar la lectura de la tabla. */
 .credits-table th {
     background: rgba(0, 242, 254, 0.1);
     color: var(--color-principal);
@@ -387,6 +399,7 @@ main section p {
 }
 
 @media (max-width: 600px) {
+    /* Ajusta cabecera, galería y tabla a pantallas estrechas. */
     .site-header {
         flex-direction: column;
         gap: 0.8rem;
@@ -413,6 +426,7 @@ main section p {
 }
 
 @media (prefers-reduced-motion: reduce) {
+    /* Respeta la preferencia del usuario y conserva los cambios de estado. */
     *, *::before, *::after {
         scroll-behavior: auto !important;
         transition-duration: 0.01ms !important;
